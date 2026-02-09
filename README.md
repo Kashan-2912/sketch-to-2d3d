@@ -44,6 +44,13 @@
       <em>3D chess board with pieces</em>
     </td>
   </tr>
+  <tr>
+    <td align="center" width="100%">
+        <img src="screenshots/3d-object.jpeg" alt="Chess Board" width="100%"/>
+      <br />
+      <em>3D - Quantum Bloom</em>
+    </td>
+  </tr>
 </table>
 
 ## 🚀 Features
@@ -61,12 +68,14 @@
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - **Three.js** - 3D graphics rendering
 - **Vanilla JavaScript** - Core application logic
 - **HTML5 Canvas** - 2D drawing interface
 - **CSS3** - Modern, responsive UI design
 
 ### Backend
+
 - **Node.js** - JavaScript runtime
 - **Express.js** - Web application framework
 - **NVIDIA AI API** - AI-powered code generation
@@ -94,11 +103,13 @@ cd sketchforge-ai
 ### 2. Install Dependencies
 
 Using npm:
+
 ```bash
 npm install
 ```
 
 Or using yarn:
+
 ```bash
 yarn install
 ```
@@ -118,6 +129,7 @@ NVAPI_KEY=your_nvidia_api_key_here
 ```
 
 > **How to get your NVIDIA API Key:**
+>
 > 1. Visit [NVIDIA API Catalog](https://build.nvidia.com/)
 > 2. Sign up or log in to your account
 > 3. Navigate to the API section
@@ -143,6 +155,7 @@ npm start
 ```
 
 The application will be available at:
+
 ```
 http://localhost:3000
 ```
@@ -173,6 +186,7 @@ http://localhost:3000
 ### Quick Scene Templates
 
 Try these one-click templates for instant results:
+
 - **Mountains** - Generate low-poly mountain landscapes
 - **Solar System** - Create planetary orbits
 - **City** - Build urban skylines
@@ -233,7 +247,7 @@ const PORT = 3000; // Change to your preferred port
 The application uses NVIDIA's AI API. Configure settings in `server.js`:
 
 ```javascript
-const API_URL = 'https://integrate.api.nvidia.com/v1/chat/completions';
+const API_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
 ```
 
 ### Three.js Scene Settings
@@ -282,6 +296,7 @@ Powered by Three.js with custom enhancements:
 ### Common Issues
 
 **Server won't start:**
+
 ```bash
 # Check if port 3000 is already in use
 netstat -ano | findstr :3000  # Windows
@@ -291,18 +306,21 @@ lsof -i :3000                  # Mac/Linux
 ```
 
 **API Key errors:**
+
 - Verify your `.env` file exists in the root directory
 - Check that `NVAPI_KEY` is spelled correctly
 - Ensure there are no spaces around the `=` sign
 - Confirm your API key is valid on NVIDIA's dashboard
 
 **3D scene not rendering:**
+
 - Check browser console for WebGL errors
 - Ensure your GPU drivers are up to date
 - Try a different browser (Chrome recommended)
 - Verify JavaScript is enabled
 
 **Drawing issues:**
+
 - Clear browser cache
 - Check if canvas element loaded properly
 - Verify no browser extensions are interfering
