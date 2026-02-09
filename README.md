@@ -45,8 +45,8 @@
     </td>
   </tr>
   <tr>
-    <td align="center" width="100%">
-        <img src="screenshots/3d-object.jpeg" alt="Chess Board" width="100%"/>
+    <td align="center" colspan="2">
+      <img src="screenshots/3d-object.jpeg" alt="3D Object" width="50%"/>
       <br />
       <em>3D - Quantum Bloom</em>
     </td>
