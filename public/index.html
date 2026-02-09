@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SketchForge AI - 2D to 3D Studio</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <defs>
+          <linearGradient id="logoGrad" x1="0" y1="0" x2="28" y2="28">
+            <stop offset="0%" stop-color="#7c3aed"/>
+            <stop offset="100%" stop-color="#06b6d4"/>
+          </linearGradient>
+        </defs>
+        <path d="M14 2L26 8v12l-12 6L2 20V8l12-6z" stroke="url(#logoGrad)" stroke-width="2" fill="none"/>
+        <path d="M14 8l6 3v6l-6 3-6-3v-6l6-3z" fill="url(#logoGrad)" opacity="0.6"/>
+        <circle cx="14" cy="14" r="3" fill="url(#logoGrad)"/>
+      </svg>
+      <span>SketchForge AI</span>
+    </div>
+
+    <div class="view-modes">
+      <button class="view-btn" data-view="2d" title="2D Canvas Only">2D</button>
+      <button class="view-btn active" data-view="split" title="Split View">Split</button>
+      <button class="view-btn" data-view="3d" title="3D Viewport Only">3D</button>
+    </div>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="btnExtrude" title="Extrude Drawing to 3D">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+          <path d="M2 17l10 5 10-5"/>
+          <path d="M2 12l10 5 10-5"/>
+        </svg>
+        Extrude
+      </button>
+      <button class="icon-btn" id="btnClearAll" title="Clear Everything">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 6h18M8 6V4h8v2M5 6v14a2 2 0 002 2h10a2 2 0 002-2V6"/>
+        </svg>
+        Clear All
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- 2D Canvas Panel -->
+    <div class="panel canvas-panel" id="canvasPanel">
+      <div class="panel-header">
+        <span class="panel-title">2D Sketch Pad</span>
+        <div class="canvas-toolbar">
+          <button class="tool-btn active" data-tool="pen" title="Pen">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 3a2.83 2.83 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+            </svg>
+          </button>
+          <button class="tool-btn" data-tool="eraser" title="Eraser">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 20H7L3 16a1 1 0 010-1.4l9.6-9.6a1 1 0 011.4 0l7 7a1 1 0 010 1.4L15 20"/>
+            </svg>
+          </button>
+          <div class="toolbar-divider"></div>
+          <input type="color" id="colorPicker" value="#e2e8f0" class="color-picker" title="Color">
+          <div class="toolbar-divider"></div>
+          <input type="range" id="lineWidth" min="1" max="20" value="3" class="size-slider" title="Brush Size">
+          <span id="sizeLabel" class="size-label">3</span>
+          <div class="toolbar-divider"></div>
+          <button class="tool-btn" id="btnUndo" title="Undo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 10h10a5 5 0 015 5v0a5 5 0 01-5 5H8"/>
+              <path d="M7 14L3 10l4-4"/>
+            </svg>
+          </button>
+          <button class="tool-btn" id="btnClearCanvas" title="Clear Canvas">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M9 9l6 6M15 9l-6 6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="canvas-container">
+        <canvas id="sketchCanvas"></canvas>
+      </div>
+    </div>
+
+    <!-- Resize Handle -->
+    <div class="resize-handle" id="resizeHandle"></div>
+
+    <!-- 3D Viewport Panel -->
+    <div class="panel three-panel" id="threePanel">
+      <div class="panel-header">
+        <span class="panel-title">3D Viewport</span>
+        <div class="three-toolbar">
+          <button class="tool-btn" id="btnResetCamera" title="Reset Camera">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>
+            </svg>
+          </button>
+          <button class="tool-btn active" id="btnToggleGrid" title="Toggle Grid">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18"/>
+              <path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>
+            </svg>
+          </button>
+          <button class="tool-btn" id="btnToggleWireframe" title="Toggle Wireframe">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M12 22V12"/>
+              <path d="M2 7v10l10 5"/>
+              <path d="M22 7v10l-10 5"/>
+            </svg>
+          </button>
+          <button class="tool-btn" id="btnClear3D" title="Clear 3D Scene">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 6h18M8 6V4h8v2M5 6v14a2 2 0 002 2h10a2 2 0 002-2V6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="three-container" id="threeContainer">
+        <div class="three-overlay" id="threeOverlay">
+          <p>Generate a 3D scene or extrude your drawing</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- SVG Output Panel (hidden by default) -->
+  <div class="svg-modal" id="svgModal">
+    <div class="svg-modal-content">
+      <div class="svg-modal-header">
+        <span>Generated SVG Art</span>
+        <button class="icon-btn" id="btnCloseSvg">Close</button>
+      </div>
+      <div class="svg-output" id="svgOutput"></div>
+    </div>
+  </div>
+
+  <!-- Bottom Panel - AI Controls -->
+  <footer class="bottom-panel">
+    <div class="prompt-row">
+      <div class="mode-selector">
+        <select id="genMode">
+          <option value="3d">Generate 3D Scene</option>
+          <option value="svg">Generate SVG Art</option>
+          <option value="interpret">Interpret Drawing</option>
+        </select>
+      </div>
+      <label class="thinking-toggle" title="Enable deep thinking (slower but higher quality)">
+        <input type="checkbox" id="thinkingMode">
+        <span class="toggle-label">Think</span>
+      </label>
+      <div class="prompt-input-wrapper">
+        <input type="text" id="promptInput" placeholder="Describe what you want to create..." autocomplete="off">
+        <button class="generate-btn" id="btnGenerate">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+          Generate
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Prompts -->
+    <div class="quick-prompts">
+      <span class="quick-label">Quick:</span>
+      <button class="quick-btn" data-prompt="A low-poly mountain landscape with pine trees and a lake" data-mode="3d">Mountains</button>
+      <button class="quick-btn" data-prompt="A solar system with the sun and colorful planets orbiting around it" data-mode="3d">Solar System</button>
+      <button class="quick-btn" data-prompt="A modern city skyline with skyscrapers of different heights and colors" data-mode="3d">City</button>
+      <button class="quick-btn" data-prompt="A chess board with chess pieces on it" data-mode="3d">Chess</button>
+      <button class="quick-btn" data-prompt="A robot character standing with arms and legs" data-mode="3d">Robot</button>
+      <button class="quick-btn" data-prompt="A colorful abstract mandala pattern with geometric shapes" data-mode="svg">Mandala</button>
+      <button class="quick-btn" data-prompt="A vibrant sunset over ocean waves with silhouettes" data-mode="svg">Sunset Art</button>
+    </div>
+
+    <!-- AI Response Area -->
+    <div class="response-area" id="responseArea">
+      <div class="response-header">
+        <span class="response-label" id="responseLabel">AI Response</span>
+        <div class="response-actions">
+          <button class="small-btn" id="btnToggleThinking" style="display:none">Show Thinking</button>
+          <button class="small-btn" id="btnCopyResponse" style="display:none">Copy</button>
+        </div>
+      </div>
+      <div class="thinking-box" id="thinkingBox" style="display:none">
+        <pre id="thinkingContent"></pre>
+      </div>
+      <div class="response-content" id="responseContent">
+        <span class="placeholder">Ready to create. Draw something or enter a prompt!</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay" style="display:none">
+    <div class="loading-spinner"></div>
+    <span>AI is generating... <span id="elapsedTime">0s</span></span>
+    <button class="cancel-btn" id="btnCancel">Cancel</button>
+  </div>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  <!-- App -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+/*************  ✨ Windsurf Command ⭐  *************/
+# Ignore node_modules folder
+/node_modules
+
+# Ignore .env file
+/.env
+
+# Ignore vscode folder
+.vscode
+
+# Ignore dist folder
+
+/*******  88913631-0484-4e60-bfc1-4b61fb4535d4  *******/

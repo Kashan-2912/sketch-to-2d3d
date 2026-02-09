@@ -1,0 +1,16 @@
+{
+  "name": "sketchforge-ai",
+  "version": "1.0.0",
+  "description": "AI-Powered 2D Drawing to 3D Model Studio",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.4",
+    "express": "^4.21.2",
+    "openai": "^4.82.0"
+  }
+}
