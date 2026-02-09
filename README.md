@@ -22,26 +22,33 @@
 <table>
   <tr>
     <td align="center">
-      <img src="screenshots/cityscape.png" alt="Modern City Skyline" width="400"/>
+      <img src="screenshots/modern-skyscrapers.jpeg" alt="Modern City Skyline" width="400"/>
       <br />
       <em>Modern city skyline with skyscrapers</em>
     </td>
     <td align="center">
-      <img src="screenshots/solar-system.png" alt="Solar System" width="400"/>
+      <img src="screenshots/solar-system.jpeg" alt="Solar System" width="400"/>
       <br />
       <em>Solar system with orbiting planets</em>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="screenshots/mountains.png" alt="Mountain Landscape" width="400"/>
+      <img src="screenshots/mountains.jpeg" alt="Mountain Landscape" width="400"/>
       <br />
       <em>Low-poly mountain landscape with trees</em>
     </td>
     <td align="center">
-      <img src="screenshots/chess.png" alt="Chess Board" width="400"/>
+      <img src="screenshots/chess-board.jpeg" alt="Chess Board" width="400"/>
       <br />
       <em>3D chess board with pieces</em>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="screenshots/3d-object.jpeg" alt="Mountain Landscape" width="full"/>
+      <br />
+      <em>Low-poly mountain landscape with trees</em>
     </td>
   </tr>
 </table>
@@ -354,7 +361,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 If you encounter any issues or have questions:
 
-- 📧 Email: support@sketchforge.ai
+- 📧 Email: mkashan2912@gmail.com
 - 🐛 Issues: [GitHub Issues](https://github.com/yourusername/sketchforge-ai/issues)
 - 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/sketchforge-ai/discussions)
 
